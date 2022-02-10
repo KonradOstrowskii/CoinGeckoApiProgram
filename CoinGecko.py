@@ -44,16 +44,27 @@ def pretify_data(data_df, coin_name):
 
     difference = data_df['price'].iloc[-1] - data_df['price'].iloc[0]
 
-    print(coin_name + ' difference over the year: ' + str(difference))
+    print(coin_name + ' difference [$] over the year: ' + str(difference))
 
     return data_df
 
+def get_5_head_echange():
+    data = cg.get_exchanges_list()
+    df = pd.DataFrame(
+        data, columns=['name', 'trust_score', 'trust_score_rank'])
+    df.set_index('name', inplace=True)
+    print(df[0:5])
 
 GetInfo()
-
+print('##' * 20)
+print("Now please put 3 ID from List : \n")
+print('##' * 20)
 first = input("\n pick 1 ID from list : ")
+print('##' * 20)
 second = input("\n pick 2 ID from list : ")
+print('##' * 20)
 third = input("\n pick 3 ID from list : ")
+
 print('##' * 20)
 
 
@@ -69,3 +80,8 @@ if __name__ == "__main__":
         data_df.set_index('date')['price'].plot(
             figsize=(30, 10), linewidth=5, color='maroon')
         print(data_df)
+
+
+print('##' * 20)
+print("Below list of 5 biggest exchange with biggest Trust Score where u can with your cryptocurrencies")
+get_5_head_echange()
