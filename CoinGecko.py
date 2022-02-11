@@ -5,19 +5,13 @@ import pprint
 cg = CoinGeckoAPI()
 
 
-def GetInfo():
-    print(" ID          SYMBOL   NAME")
-    print("bitcoin      btc      Bitcoin")
-    print("etherum      eth      Etherum")
-    print("binancecoin  bnb      BinanceCoin")
-    print("litecoin     ltc      Litecoin")
-    print("cardano      ada      Cardano")
-    print("solana       sol      Solana")
-    print("polkadot     dot      Polkadot")
-    print("terra-luna   luna     Terra")
-    print("avalanche-2  AVAX     Avhalanche")
-    print("dogecoin     doge     Dogecoin")
-    print("shiba-inu    shib     Shiba Inu")
+def get_list_coin_history(vs_currency='usd'):
+    data = cg.get_coins_markets(vs_currency='usd')
+    output = pd.DataFrame()
+    for row in data:
+        output = output.append(row, ignore_index=True)
+    output = output[['id', 'symbol', 'name']]
+    print(output[0:20])
 
 
 def get_coin_history(id, vs_currency, days):
@@ -48,6 +42,7 @@ def pretify_data(data_df, coin_name):
 
     return data_df
 
+
 def get_5_head_echange():
     data = cg.get_exchanges_list()
     df = pd.DataFrame(
@@ -55,7 +50,8 @@ def get_5_head_echange():
     df.set_index('name', inplace=True)
     print(df[0:5])
 
-GetInfo()
+
+get_list_coin_history()
 print('##' * 20)
 print("Now please put 3 ID from List : \n")
 print('##' * 20)
