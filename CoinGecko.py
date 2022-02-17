@@ -34,11 +34,7 @@ def create_dataframe(data):
 def pretify_data(data_df):
     data_df = data_df[data_df['date'].notna()]
     data_df['date'] = pd.to_datetime(data_df['date'], unit='ms')
-
     difference = data_df['price'].iloc[-1] - data_df['price'].iloc[0]
-
-    #print(coin_name + ' difference [$] over the year: ' + str(difference))
-
     return data_df
 
 
