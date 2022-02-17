@@ -1,7 +1,6 @@
 from pycoingecko import CoinGeckoAPI
 import pandas as pd
 import matplotlib as plt
-import pprint
 cg = CoinGeckoAPI()
 
 
@@ -51,6 +50,7 @@ def get_5_head_echange():
     print(df[0:5])
 
 
+print("Underneath we will display a list of supported coinstheir ID, Symbol and Name. After selecting 3, we will display annual change of course")
 get_list_coin_history()
 print('##' * 20)
 print("Now please put 3 ID from List : \n")
@@ -72,9 +72,6 @@ if __name__ == "__main__":
         data_raw = get_coin_history(x, vs_currency, days)
         data_df = create_dataframe(data_raw)
         pretify_data(data_df, x)
-        data_df
-        data_df.set_index('date')['price'].plot(
-            figsize=(30, 10), linewidth=5, color='maroon')
         print(data_df)
 
 
