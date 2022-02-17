@@ -31,13 +31,13 @@ def create_dataframe(data):
     return data_df
 
 
-def pretify_data(data_df, coin_name):
+def pretify_data(data_df):
     data_df = data_df[data_df['date'].notna()]
     data_df['date'] = pd.to_datetime(data_df['date'], unit='ms')
 
     difference = data_df['price'].iloc[-1] - data_df['price'].iloc[0]
 
-    print(coin_name + ' difference [$] over the year: ' + str(difference))
+    #print(coin_name + ' difference [$] over the year: ' + str(difference))
 
     return data_df
 
@@ -67,11 +67,11 @@ print('##' * 20)
 if __name__ == "__main__":
     id = [first, second, third]
     vs_currency = 'usd'
-    days = '365'
+    days = '366'
     for x in id:
         data_raw = get_coin_history(x, vs_currency, days)
         data_df = create_dataframe(data_raw)
-        pretify_data(data_df, x)
+        data_df = pretify_data(data_df)
         print(data_df)
 
 
