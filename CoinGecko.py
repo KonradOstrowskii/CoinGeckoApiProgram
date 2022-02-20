@@ -60,12 +60,12 @@ while True:
     print('##' * 20)
     second = input("\n pick 2 ID from list : ")
     if second not in list:
-        print("Could not find that ID , We goona show u list again")
+        print("VALUE ERROR !!!!\nCould not find given ID, check our list One more time and try again!")
         continue
     print('##' * 20)
     third = input("\n pick 3 ID from list : ")
     if third not in list:
-        print("Could not find that ID , We goona show u list again")
+        print("VALUE ERROR !!!!\nCould not find given ID, check our list One more time and try again!")
         continue
     print('##' * 20)
     break
