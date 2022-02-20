@@ -3,8 +3,10 @@ import pandas as pd
 import matplotlib as plt
 cg = CoinGeckoAPI()
 
+list = ['bitcoin', 'ethereum', 'tethe,', 'binancecoin', 'usd-coin', 'ripple', 'cardano', 'solana', 'avalanche-2', 'terra-luna', 'polkadot',
+        'dogecoin', 'binance-usd', 'shiba-inu', 'terra-usd', 'matic-network', 'crypto-com-chain', 'wrapped-bitcoin', 'dai', 'litecoin']
 
-def get_list_coin_history(vs_currency='usd'):
+def get_list_coin_markets(vs_currency='usd'):
     data = cg.get_coins_markets(vs_currency='usd')
     output = pd.DataFrame()
     for row in data:
@@ -46,18 +48,27 @@ def get_5_head_echange():
     print(df[0:5])
 
 
-print("Underneath we will display a list of supported coinstheir ID, Symbol and Name. After selecting 3, we will display annual change of course")
-get_list_coin_history()
-print('##' * 20)
-print("Now please put 3 ID from List : \n")
-print('##' * 20)
-first = input("\n pick 1 ID from list : ")
-print('##' * 20)
-second = input("\n pick 2 ID from list : ")
-print('##' * 20)
-third = input("\n pick 3 ID from list : ")
-
-print('##' * 20)
+while True:
+    print("We will display a list of supported coins their ID, Symbol and Name. After selecting 3, we will display annual change of course")
+    get_list_coin_markets()
+    print('##' * 20)
+    print("Now please put 3 ID from List : \n")
+    first = input("\n pick 1 ID from list : ")
+    if first not in list:
+        print("VALUE ERROR !!!!\nCould not find given ID, check our list One more time and try again!")
+        continue
+    print('##' * 20)
+    second = input("\n pick 2 ID from list : ")
+    if second not in list:
+        print("Could not find that ID , We goona show u list again")
+        continue
+    print('##' * 20)
+    third = input("\n pick 3 ID from list : ")
+    if third not in list:
+        print("Could not find that ID , We goona show u list again")
+        continue
+    print('##' * 20)
+    break
 
 
 if __name__ == "__main__":
