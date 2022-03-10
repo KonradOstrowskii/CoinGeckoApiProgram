@@ -1,6 +1,5 @@
 from pycoingecko import CoinGeckoAPI
 import pandas as pd
-import matplotlib as plt
 cg = CoinGeckoAPI()
 
 list = ['bitcoin', 'ethereum', 'tethe,', 'binancecoin', 'usd-coin', 'ripple', 'cardano', 'solana', 'avalanche-2', 'terra-luna', 'polkadot',
@@ -37,6 +36,8 @@ def pretify_data(data_df):
     data_df = data_df[data_df['date'].notna()]
     data_df['date'] = pd.to_datetime(data_df['date'], unit='ms')
     difference = data_df['price'].iloc[-1] - data_df['price'].iloc[0]
+    print(x_id +
+          ' difference [$] over the year : ' + str(difference), "$")
     return data_df
 
 
@@ -75,8 +76,8 @@ if __name__ == "__main__":
     id = [first, second, third]
     vs_currency = 'usd'
     days = '366'
-    for x in id:
-        data_raw = get_coin_history(x, vs_currency, days)
+    for x_id in id:
+        data_raw = get_coin_history(x_id, vs_currency, days)
         data_df = create_dataframe(data_raw)
         data_df = pretify_data(data_df)
         print(data_df)
